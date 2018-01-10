@@ -32,3 +32,12 @@ Client sources are found _src/web_. The server will serve the client through
 #### CSS
 
 CSS Sources are found in _src/web/css_ and are bundled to _src/web/styles.css_.
+
+## Development
+
+Development mode can be started with `npm start` this will start Nodemon for the
+APIs and Postcss and Rollup for the client.
+
+Nodemon configuration will use **SIGHUP** as the kill signal for child process
+as I was running into [an issue](https://github.com/remy/nodemon/issues/1025)
+with the default.
