@@ -1,0 +1,28 @@
+{
+  "name": "react-babel-rollup-koa-seed",
+  "version": "1.0.0",
+  "description": "Seed project for end-to-end web apps that use a Koa based API and a React based UI",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-static": "^4.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "github:pgraham/concurrently",
+    "nodemon": "^1.14.8"
+  },
+  "scripts": {
+    "start": "concurrently --default-input-target srv -c blue,magenta,cyan npm:watch:*",
+    "watch:srv": "nodemon src/srv/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgraham/react-babel-rollup-koa-seed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgraham/react-babel-rollup-koa-seed/issues"
+  },
+  "homepage": "https://github.com/pgraham/react-babel-rollup-koa-seed#readme"
+}
