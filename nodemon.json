@@ -1,0 +1,4 @@
+{
+  "signal": "SIGHUP",
+  "ignore": [ "src/web/", "spec/" ]
+}
