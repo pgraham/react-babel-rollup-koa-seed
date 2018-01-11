@@ -8,11 +8,21 @@
   },
   "devDependencies": {
     "concurrently": "github:pgraham/concurrently",
-    "nodemon": "^1.14.8"
+    "nodemon": "^1.14.8",
+    "postcss-cli": "^4.1.1",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0"
   },
   "scripts": {
     "start": "concurrently --default-input-target srv -c blue,magenta,cyan npm:watch:*",
     "watch:srv": "nodemon src/srv/main.js",
+    "watch:css": "postcss src/web/css/bundle.css -c postcss.config.js -o src/web/styles.css --watch --poll",
+    "lint": "npm run lint:css",
+    "lint:css": "stylelint src/web/css/*.css",
+    "compile": "npm run lint && npm run compile:css",
+    "compile:css": "postcss src/web/css/bundle.css -c postcss.config.js -o src/web/styles.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

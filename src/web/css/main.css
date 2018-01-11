@@ -1,0 +1,14 @@
+body {
+  margin: 1em;
+}
+
+main {
+  padding: 2em;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+}

@@ -1,0 +1,25 @@
+html,
+body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  background-color: var(--background);
+}
+
+h1 {
+  display: block;
+  margin: 0;
+  font-size: 2em;
+}
+
+p {
+  display: block;
+  margin: 1em 0;
+}

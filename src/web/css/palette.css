@@ -1,0 +1,6 @@
+:root {
+  --palette-dark: #202222;
+  --palette-light: #f9f5ff;
+  --text: var(--palette-dark);
+  --background: var(--palette-light);
+}
