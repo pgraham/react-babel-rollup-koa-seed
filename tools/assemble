@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+const cleanWorkDir = require('./lib/clean-work-directory')
+const copySrc = require('./lib/copy-src')
+const copyConfig = require('./lib/copy-config')
+const shrinkwrap = require('./lib/shrinkwrap')
+const pack = require('./lib/pack')
+
+const argv = require('minimist')(process.argv.slice(2))
+const targetEnv = argv._[0] || 'production'
+const pkg = require('../package.json')
+
+console.log(`Assembling ${targetEnv} build of ${pkg.name} v${pkg.version}`)
+
+console.log('  - Cleaning build/work directory')
+cleanWorkDir(targetEnv)
+.then(() => {
+  console.log('  - Copy source files')
+  return copySrc()
+})
+.then(() => {
+  console.log(`  - Copying ${targetEnv} config`)
+  return copyConfig(targetEnv)
+})
+.then(() => {
+  console.log('  - Shrinkwrapping')
+  return shrinkwrap()
+})
+.then(() => {
+  console.log('  - Packing')
+  return pack(pkg.name, pkg.version, targetEnv)
+})
+.then((artifactDest) => {
+  console.log(`Assembly complete!
+
+Assembled to build/artifacts/${artifactDest}`)
+  process.exit(0)
+})
+.catch((err) => {
+  console.log(`Assembly failed, dang!`)
+  console.error(err)
+  process.exit(1)
+})
