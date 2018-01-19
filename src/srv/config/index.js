@@ -1,10 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  *  Configuration loader.
  */
 class Config {
-
   constructor () {
     this.env = require('./config.json')
   }
