@@ -57,11 +57,14 @@
     "test:compile-src": "BABEL_ENV=test babel src/web/js --out-dir build/test/web",
     "test:compile-spec": "BABEL_ENV=test babel spec/web --out-dir build/test/spec",
     "stage": "export NODE_ENV=production && npm version patch && npm run build:stage",
+    "release": "export NODE_ENV=production && npm run build:prod",
     "build:stage": "npm run compile && npm run assemble:stage",
+    "build:prod": "npm run compile && npm run assemble:prod",
     "compile": "npm run lint && npm run compile:css && npm run compile:js",
     "compile:css": "postcss src/web/css/bundle.css -c postcss.config.js -o src/web/styles.css",
     "compile:js": "rollup -c rollup.js",
-    "assemble:stage": "tools/assemble -- staging"
+    "assemble:stage": "tools/assemble -- staging",
+    "assemble:prod": "tools/assemble -- production"
   },
   "repository": {
     "type": "git",

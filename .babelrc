@@ -1,5 +1,15 @@
 {
   "env": {
+    "production": {
+      "presets": [
+        [ "env", { "modules": false } ],
+        "stage-0",
+        "react"
+      ],
+      "plugins": [
+        "external-helpers"
+      ]
+    },
     "development": {
       "presets": [
         [ "env", { "modules": false } ],
