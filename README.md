@@ -22,7 +22,7 @@ UI.
  - Unit test scaffold which uses mocha and chai.
  - Staging and production build assembly
 
-** Keep everything below this line as a starting point for your README **
+*Keep everything below this line as a starting point for your README*
 
 ----
 
