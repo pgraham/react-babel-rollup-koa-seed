@@ -24,7 +24,9 @@
     "postcss-import": "^11.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "redux": "^3.7.2",
+    "rimraf": "^2.6.2",
     "rollup": "^0.54.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
@@ -32,6 +34,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "snazzy": "^7.0.0",
+    "source-map-support": "^0.5.1",
     "standard": "^10.0.3",
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0"
@@ -47,8 +50,13 @@
     "compile": "npm run lint && npm run compile:css",
     "compile:css": "postcss src/web/css/bundle.css -c postcss.config.js -o src/web/styles.css",
     "compile:js": "rollup -c rollup.js",
-    "test": "npm run test:srv",
-    "test:srv": "NODE_PATH=src/srv mocha -r ./spec/setup.js spec/srv/**/*.spec.js"
+    "test": "npm run test:compile && npm run test:srv && npm run test:web",
+    "test:srv": "NODE_PATH=src/srv mocha -r ./spec/setup.js spec/srv/**/*.spec.js",
+    "test:web": "NODE_PATH=build/test/web mocha -r source-map-support/register -r ./spec/setup.js build/test/spec/**/*.spec.js",
+    "test:compile": "npm run lint && npm run test:clean && npm run test:compile-src && npm run test:compile-spec",
+    "test:clean": "rimraf build/test",
+    "test:compile-src": "BABEL_ENV=test babel src/web/js --out-dir build/test/web",
+    "test:compile-spec": "BABEL_ENV=test babel spec/web --out-dir build/test/spec"
   },
   "repository": {
     "type": "git",

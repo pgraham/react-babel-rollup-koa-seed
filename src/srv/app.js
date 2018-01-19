@@ -16,7 +16,6 @@ class App {
   }
 
   addMiddleware () {
-    console.log(path.resolve(__dirname, '../web'))
     this.app.use(koaStatic(path.resolve(__dirname, '../web')))
 
     // Add other middleware here ...
