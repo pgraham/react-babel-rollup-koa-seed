@@ -42,7 +42,11 @@ Client sources are found _src/web_. The server will serve the client through
 
 #### CSS
 
-CSS Sources are found in _src/web/css_ and are bundled to _src/web/styles.css_.
+CSS sources are found in _src/web/css_ and are bundled to _src/web/styles.css_.
+
+#### Javascript
+
+Javascript sources are found _src/web/js_ and are bundled to _src/web/app.js_.
 
 ## Development
 
