@@ -1,15 +1,19 @@
 'use strict'
 
 /**
- *  Configuration loader.
+ * Configuration loader.
  */
 class Config {
   constructor () {
-    this.env = require('./config.json')
+    this.config = require('./config.json')
+  }
+
+  isDev () {
+    return this.config.env === 'development'
   }
 
   getHttp () {
-    return this.env.http
+    return this.config.http
   }
 }
 

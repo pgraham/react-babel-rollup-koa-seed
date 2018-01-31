@@ -1,4 +1,5 @@
 {
+  "env": "development",
   "http": {
     "port": "8080"
   }
