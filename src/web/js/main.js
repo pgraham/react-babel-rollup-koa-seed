@@ -9,6 +9,8 @@ import ReactDOM from 'react-dom'
 import App from './cmp/app'
 import store from './model/store'
 
+import autoreloader from './util/autoreload-client'
+
 document.addEventListener(
   'DOMContentLoaded',
   () => {
@@ -19,3 +21,7 @@ document.addEventListener(
   },
   false
 )
+
+if (process.env.NODE_ENV === 'development') {
+  autoreloader.start()
+}

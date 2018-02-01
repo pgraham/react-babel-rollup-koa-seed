@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path')
+const http = require('http')
 const Koa = require('koa')
 const koaStatic = require('koa-static')
 
@@ -23,7 +24,8 @@ class App {
 
   start () {
     let port = this.config.getHttp().port
-    this.app.listen(port, () => {
+
+    this.server = http.createServer(this.app.callback()).listen(port, () => {
       console.log(`Server listening on port ${port}`)
     })
   }
