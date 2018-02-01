@@ -7,13 +7,12 @@ UI.
 
 ## Usage
 
- 1. `$ git clone https://github.com/pgraham/react-babel-rollup-koa-seed.git`
- 2. `$ mv react-babel-rollup-koa-seed my-new-project`
- 3. `$ cd my-new-project`
- 4. `$ npm install`
- 5. `$ git add package-lock.json`
- 6. `$ git commit -m "Initial commit"`
- 7. `$ npm start`
+ 1. `$ git clone https://github.com/pgraham/react-babel-rollup-koa-seed.git my-new-project`
+ 2. `$ cd my-new-project`
+ 3. `$ npm install`
+ 4. `$ git add package-lock.json`
+ 5. `$ git commit -m "Initial commit"`
+ 6. `$ npm start`
 
 ## Features
 
