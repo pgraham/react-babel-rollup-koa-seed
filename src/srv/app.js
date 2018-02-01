@@ -13,13 +13,17 @@ class App {
     this.config = config
     this.app = new Koa()
 
-    this.addMiddleware()
+    this.initMiddleware()
   }
 
-  addMiddleware () {
+  initMiddleware () {
     this.app.use(koaStatic(path.resolve(__dirname, '../web')))
 
     // Add other middleware here ...
+  }
+
+  addMiddleware (mw) {
+    this.app.use(mw)
   }
 
   start () {
