@@ -4,8 +4,19 @@
 'use strict'
 
 const { promisify } = require('util')
-const cp = promisify(require('fs').copyFile)
+const fs = require('fs')
+const copyFile = promisify(fs.copyFile)
+const access = promisify(fs.access)
 const ncp = promisify(require('ncp'))
+
+const cp = (src, dest) => {
+  return access(src).then(
+    () => {
+      return copyFile(src, dest)
+    },
+    () => {}
+  )
+}
 
 module.exports = () => {
   return new Promise((resolve, reject) => {
@@ -18,10 +29,10 @@ module.exports = () => {
       cp('./package.json', './build/work/package.json'),
       cp('./package-lock.json', './build/work/package-lock.json')
     ])
-    .then(resolve)
-    .catch((err) => {
-      console.error('Unable to copy sources into work/ directory')
-      reject(err)
-    })
+      .then(resolve)
+      .catch(err => {
+        console.error('Unable to copy sources into work/ directory')
+        reject(err)
+      })
   })
 }
