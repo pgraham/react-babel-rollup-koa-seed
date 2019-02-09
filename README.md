@@ -14,6 +14,10 @@ UI.
  5. `$ git commit -m "Initial commit"`
  6. `$ npm start`
 
+At this point you might also want to remove _package-lock.json_ from .gitignore.
+This is necessary if you want to use the `npm run stage` and `npm run release`
+commands.
+
 ## Features
 
  - Single command development with `npm start`. Starts watches for local API
