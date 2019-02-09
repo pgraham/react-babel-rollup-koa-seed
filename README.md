@@ -7,12 +7,14 @@ UI.
 
 ## Usage
 
- 1. `$ git clone https://github.com/pgraham/react-babel-rollup-koa-seed.git my-new-project`
- 2. `$ cd my-new-project`
- 3. `$ npm install`
- 4. `$ git add package-lock.json`
- 5. `$ git commit -m "Initial commit"`
- 6. `$ npm start`
+```sh
+$ git clone https://github.com/pgraham/react-babel-rollup-koa-seed.git my-new-project
+$ cd my-new-project
+$ npm install
+$ git add package-lock.json
+$ git commit -m "Initial commit"
+$ npm start
+```
 
 At this point you might also want to remove _package-lock.json_ from .gitignore.
 This is necessary if you want to use the `npm run stage` and `npm run release`
