@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+/**
+ * Deploy an existing build into the deployment directory structure. This script
+ * will also inject the deployment with a script to start the server with
+ * forever but will NOT execute the script. This is because it's likely that
+ * a current script (for the previous version) is already bound to the desired
+ * port. For a production deployment, this can be accomplished with the
+ * following:
+ *
+ *     $ forever stop zeptech_production
+ *     $ ./start.sh
+ *
+ * This script handles setting appropriate NODE_PATH and log file paths for
+ * forever. For a staging deployment just replace the word _production_ with
+ * _staging_ in the `forever stop` command.
+ *
+ * TODO Remove .tgz from deployment directory when finished
+ */
+const { promisify } = require("util");
+const { homedir } = require("os");
+const fs = require("fs");
+
+const copyArtifact = require("./lib/copy-artifact");
+const unpack = require("./lib/unpack");
+const install = require("./lib/install");
+const createStartScript = require("./lib/create-start-script");
+
+const argv = require("minimist")(process.argv.slice(2));
+const targetEnv = argv._[0] || "production";
+
+const pkg = require("../package.json");
+const buildName = `${pkg.name}-${pkg.version}`;
+
+const artifactPath = `build/artifacts/${targetEnv}/${buildName}.tgz`;
+const deployDir = `${homedir()}/dev/srv/${pkg.name}/${targetEnv}`;
+const deployPath = `${deployDir}/${buildName}`;
+const deployArtifact = `${deployPath}.tgz`;
+
+const repoPath = process.cwd();
+
+console.log(`Deploying ${targetEnv} build ${pkg.name} v${pkg.version}`);
+
+console.log(`  - Copying artifact to deployment directory`)
+copyArtifact(artifactPath, `${deployArtifact}`)
+.then(() => {
+  console.log(`  - Unpacking`);
+  return unpack(deployArtifact);
+})
+.then(() => {
+  console.log(`  - Installing`);
+  return install(deployPath);
+})
+.then(() => {
+  console.log(`  - Creating start script`);
+  return createStartScript(deployPath, pkg.name, targetEnv);
+})
+.then((artifactDest) => {
+  console.log(`Deployment complete!
+
+Deployed to ${deployPath}`);
+  process.exit(0);
+})
+.catch(err => {
+  console.log("Deployment failed, dang!");
+  console.error(err);
+  process.exit(1);
+});

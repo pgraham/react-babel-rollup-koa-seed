@@ -65,7 +65,9 @@
     "compile:css": "postcss src/web/css/bundle.css -c postcss.config.js -o src/web/styles.css",
     "compile:js": "NODE_ENV=production rollup -c rollup.js",
     "assemble:stage": "tools/assemble -- staging",
-    "assemble:prod": "tools/assemble -- production"
+    "assemble:prod": "tools/assemble -- production",
+    "deploy:prod": "tools/deploy -- production",
+    "deploy:stage": "tools/deploy -- staging"
   },
   "repository": {
     "type": "git",
