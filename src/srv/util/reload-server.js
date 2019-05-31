@@ -9,9 +9,9 @@ const { Server: WebSocketServer } = require('ws')
 /**
  * Auto-reload websocket server
  */
-exports.start = app => {
+exports.init = server => {
   const options = {
-    server: app.server,
+    server: server,
     path: '/autoreload'
   }
 
@@ -36,6 +36,9 @@ exports.start = app => {
         client.send('reload')
       })
     }, 100)
+
     fs.watch(f, dispatchReload)
   })
+
+  return wss
 }

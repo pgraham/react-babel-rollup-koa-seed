@@ -12,6 +12,11 @@ class App {
   constructor (config) {
     this.config = config
     this.app = new Koa()
+    this.server = http.createServer(this.app.callback())
+
+    if (config.isDev()) {
+      require('./util/reload-server').init(this.server)
+    }
 
     this.initMiddleware()
   }
@@ -29,7 +34,7 @@ class App {
   start () {
     let port = this.config.getHttp().port
 
-    this.server = http.createServer(this.app.callback()).listen(port, () => {
+    this.server.listen(port, () => {
       console.log(`Server listening on port ${port}`)
     })
   }
