@@ -11,13 +11,17 @@ import store from './model/store'
 
 import autoreloader from './util/autoreload-client'
 
+function render (state) {
+  ReactDOM.render(
+    React.createElement(App, state),
+    document.getElementsByTagName('main')[0]
+  )
+}
+
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    ReactDOM.render(
-      React.createElement(App, { store: store }),
-      document.getElementsByTagName('main')[0]
-    )
+    render(store.getState())
   },
   false
 )

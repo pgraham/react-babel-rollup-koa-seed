@@ -6,11 +6,5 @@
 import React from 'react'
 
 export default function App (props) {
-  return (
-    <ul>
-      {props.store
-        .getState()
-        .posts.map((post, idx) => <li key={idx}>{post}</li>)}
-    </ul>
-  )
+  return <ul>{props.posts.map((post, idx) => <li key={idx}>{post}</li>)}</ul>
 }
