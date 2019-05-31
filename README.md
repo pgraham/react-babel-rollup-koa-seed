@@ -10,15 +10,25 @@ UI.
 ```sh
 $ git clone https://github.com/pgraham/react-babel-rollup-koa-seed.git my-new-project
 $ cd my-new-project
+$ git remote set-url origin <remote-url>
 $ npm install
-$ git add package-lock.json
-$ git commit -m "Initial commit"
-$ npm start
 ```
 
-At this point you might also want to remove _package-lock.json_ from .gitignore.
-This is necessary if you want to use the `npm run stage` and `npm run release`
-commands.
+At this point you might also want to remove _package-lock.json_ from .gitignore
+and add it to the repo.  This is necessary if you want to use the `npm run
+stage` and `npm run release` commands.
+
+```sh
+$ git mv -f .repo-gitignore .gitignore
+$ git add package-lock.json
+$ git commit -m "Initial commit"
+```
+
+Finally, you can start the development watches and start working.
+
+```sh
+$ npm start
+```
 
 ## Features
 
