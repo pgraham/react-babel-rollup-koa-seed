@@ -8,27 +8,46 @@ import cjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
 import uglify from 'rollup-plugin-uglify'
+import sourcemaps from 'rollup-plugin-sourcemaps'
 
 const env = process.env.NODE_ENV || 'development'
+const isProd = env === 'production'
 
 export default {
   input: 'src/web/js/main.js',
   output: {
     file: 'src/web/app.js',
     format: 'iife',
-    sourcemap: env === 'development'
+    name: 'projectSeed',
+    sourcemap: !isProd
   },
   plugins: [
+    replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
     resolve({
       browser: true,
-      extensions: [ '.js', '.json', '.jsx' ]
+      extensions: ['.js', '.json', '.jsx']
     }),
-    replace({ 'process.env.NODE_ENV': JSON.stringify(env) }),
-    cjs(),
+    cjs({
+      namedExports: {
+        'node_modules/react/index.js': [
+          'createElement',
+          'Component',
+          'Fragment',
+          'PropTypes',
+          'PureComponent'
+        ],
+        'node_modules/react-dom/index.js': ['render'],
+        'node_modules/react-redux/node_modules/react-is/index.js': [
+          'isValidElementType',
+          'isContextConsumer'
+        ]
+      }
+    }),
     babel({
       exclude: 'node_modules/**'
     }),
-    env === 'production' && uglify()
+    isProd && uglify(),
+    !isProd && sourcemaps()
   ],
   watch: {
     chokidar: {

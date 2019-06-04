@@ -1,33 +1,15 @@
 {
-  "env": {
-    "production": {
-      "presets": [
-        [ "env", { "modules": false } ],
-        "stage-0",
-        "react"
-      ],
-      "plugins": [
-        "external-helpers"
-      ]
-    },
-    "development": {
-      "presets": [
-        [ "env", { "modules": false } ],
-        "stage-0",
-        "react"
-      ],
-      "plugins": [
-        "external-helpers"
-      ]
-    },
-    "test": {
-      "sourceMaps": "inline",
-      "presets": [
-        [ "env", { "targets": { "node": "current" } } ],
-        "stage-0",
-        "react"
-      ],
-      "plugins": []
-    }
-  }
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"useBuiltIns": "usage",
+				"corejs": 3
+			}
+		],
+		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-proposal-object-rest-spread"
+	]
 }
