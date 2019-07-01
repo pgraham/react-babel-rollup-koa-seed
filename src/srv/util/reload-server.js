@@ -17,8 +17,12 @@ exports.init = server => {
 
   const wss = new WebSocketServer(options)
 
-  wss.on('connection', () => {
+  wss.on('connection', ws => {
     console.log('Reload client connected')
+
+    ws.on('error', e => {
+      console.log(`Socket error: ${e.message}`)
+    })
   })
 
   const webRoot = path.resolve(__dirname, '../../../src/web')
