@@ -30,14 +30,25 @@ export default {
     cjs({
       namedExports: {
         'node_modules/react/index.js': [
+          'cloneElement',
           'createElement',
+          'useContext',
+          'useEffect',
+          'useLayoutEffect',
+          'useMemo',
+          'useReducer',
+          'useRef',
+          'Children',
           'Component',
           'Fragment',
           'PropTypes',
           'PureComponent'
         ],
-        'node_modules/react-dom/index.js': ['render'],
-        'node_modules/react-redux/node_modules/react-is/index.js': [
+        'node_modules/react-dom/index.js': [
+          'render',
+          'unstable_batchedUpdates'
+        ],
+        'node_modules/react-is/index.js': [
           'isValidElementType',
           'isContextConsumer'
         ]

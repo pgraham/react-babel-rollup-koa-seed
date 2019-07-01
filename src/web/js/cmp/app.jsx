@@ -4,7 +4,10 @@
 'use strict'
 
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default function App (props) {
+function App (props) {
   return <ul>{props.posts.map((post, idx) => <li key={idx}>{post}</li>)}</ul>
 }
+
+export default connect(state => ({ posts: state.posts }))(App)

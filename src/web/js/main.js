@@ -5,6 +5,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
 import App from './cmp/app'
 import store from './model/store'
@@ -13,7 +14,9 @@ import autoreloader from './util/autoreload-client'
 
 function render (state) {
   ReactDOM.render(
-    React.createElement(App, state),
+    React.createElement(Provider, { store }, [
+      React.createElement(App, { key: 'app' })
+    ]),
     document.getElementsByTagName('main')[0]
   )
 }
