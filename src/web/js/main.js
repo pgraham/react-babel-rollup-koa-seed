@@ -7,7 +7,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import App from './cmp/app'
+import { App } from './cmp/app'
 import store from './model/store'
 
 import autoreloader from './util/autoreload-client'

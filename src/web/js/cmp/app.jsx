@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 import { Post } from './post'
 
-function App (props) {
+function AppCmp (props) {
   return (
     <ul>
       {props.posts.map((post, idx) => (
@@ -20,4 +20,4 @@ function App (props) {
   )
 }
 
-export default connect(state => ({ posts: state.posts }))(App)
+export const App = connect(state => ({ posts: state.posts }))(AppCmp)
