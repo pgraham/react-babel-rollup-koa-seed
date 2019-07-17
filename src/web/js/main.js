@@ -5,12 +5,18 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+
 import { Provider } from 'react-redux'
 
 import { App } from './cmp/app'
-import store from './model/store'
+import { initializeStore } from './model/store'
+import { Storage } from './persistence/storage'
 
 import autoreloader from './util/autoreload-client'
+
+const storage = new Storage()
+
+const store = initializeStore(storage.getState())
 
 function render (state) {
   ReactDOM.render(
@@ -28,6 +34,9 @@ document.addEventListener(
   },
   false
 )
+
+store.subscribe(render)
+store.subscribe(() => storage.setState(store.getState()))
 
 if (process.env.NODE_ENV === 'development') {
   autoreloader.start()

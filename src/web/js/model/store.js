@@ -5,7 +5,7 @@
 
 import { createStore } from 'redux'
 
-function getInitialState () {
+function getDefaultState () {
   return {
     posts: [
       `HARI SELDON—… born in the 11,988th year of the Galactic Era; died 12,069.`,
@@ -17,8 +17,10 @@ function getInitialState () {
   }
 }
 
-const store = createStore((state = getInitialState(), action) => {
-  return state
-})
-
-export default store
+export const initializeStore = (initialState = getDefaultState()) =>
+  createStore((state = initialState, action) => {
+    switch (action.type) {
+      default:
+        return state
+    }
+  })
