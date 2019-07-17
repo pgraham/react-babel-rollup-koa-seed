@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 
 import { Post } from './post'
 
-function AppCmp (props) {
+export function AppCmp (props) {
   return (
     <ul>
       {props.posts.map((post, idx) => (
