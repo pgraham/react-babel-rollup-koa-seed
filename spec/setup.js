@@ -1,1 +1,3 @@
-require('chai').use(require('dirty-chai'))
+require('chai')
+  .use(require('dirty-chai'))
+  .use(require('sinon-chai'))
